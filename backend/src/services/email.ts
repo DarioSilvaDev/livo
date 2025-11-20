@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { envs } from "../config";
+import { envs } from "../config/envs.js";
 
 interface OrderItem {
   colorId: string;

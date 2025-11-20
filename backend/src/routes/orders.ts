@@ -7,7 +7,7 @@ import {
 } from "../db/orders.js";
 import { pool } from "../db/index.js";
 import { sendOrderConfirmationEmail } from "../services/email.js";
-import { envs } from "../config/index.js";
+import { envs } from "../config/envs.js";
 import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
@@ -126,10 +126,7 @@ router.post("/", async (req: Request, res: Response) => {
     let orderStatus = "pendiente";
     if (paymentStatus === "approved") {
       orderStatus = "confirmado";
-    } else if (
-      paymentStatus === "rejected" ||
-      paymentStatus === "cancelled"
-    ) {
+    } else if (paymentStatus === "rejected" || paymentStatus === "cancelled") {
       orderStatus = "cancelado";
     }
 

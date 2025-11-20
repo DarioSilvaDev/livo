@@ -1,6 +1,6 @@
 import pkg from "pg";
 import dotenv from "dotenv";
-import { envs } from "../config/index.js";
+import { envs } from "../config/envs.js";
 
 dotenv.config();
 

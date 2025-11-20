@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import mercadopago from "mercadopago";
-import { envs } from ".";
+import { envs } from "./envs.js";
 config();
 export function initializeMercadoPago() {
   console.log(

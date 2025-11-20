@@ -4,7 +4,7 @@ import { createOrder, getOrderById, updateOrderStatus } from "../db/orders.js";
 import { sendOrderConfirmationEmail } from "../services/email.js";
 import { pool } from "../db/index.js";
 import mercadopagoClient from "../config/mercadopago.js";
-import { envs } from "../config/index.js";
+import { envs } from "../config/envs.js";
 
 const router = express.Router();
 
