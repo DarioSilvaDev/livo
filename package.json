@@ -1,0 +1,32 @@
+{
+  "name": "li-po-ecommerce",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "dev:backend": "npm run dev --workspace backend",
+    "build": "npm run build --workspace frontend && npm run build --workspace backend",
+    "build:frontend": "npm run build --workspace frontend",
+    "build:backend": "npm run build --workspace backend",
+    "lint": "npm run lint --workspace frontend",
+    "tunnel:frontend": "lt --port 5173",
+    "tunnel:backend": "lt --port 5000",
+    "tunnel:all": "node scripts/tunnel.js",
+    "tunnel": "node scripts/tunnel.js",
+    "deploy:check": "node scripts/deploy-check.js"
+  },
+  "overrides": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "localtunnel": "^2.0.2",
+    "concurrently": "^8.2.2"
+  }
+}
