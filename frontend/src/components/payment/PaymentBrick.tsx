@@ -71,6 +71,23 @@ export default function PaymentBrick({
     }
   };
 
+  // Wallet onSubmit handler (different signature - no parameters)
+  const handleWalletSubmit = async (): Promise<unknown> => {
+    setIsProcessing(true);
+    try {
+      // Wallet handles the payment flow differently
+      // The payment result will come through the onReady or onError callbacks
+      // For now, we'll just mark as processing
+      return Promise.resolve();
+    } catch (error: any) {
+      console.error("Wallet payment error:", error);
+      onError(error);
+      return Promise.reject(error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   if (!isInitialized) {
     return (
       <div className="flex items-center justify-center p-12">
@@ -93,14 +110,16 @@ export default function PaymentBrick({
     );
   }
 
-  const initialization = {
+  // CardPayment initialization
+  const cardInitialization = {
     amount: amount,
     payer: {
       email: payer.email,
     },
   };
 
-  const customization = {
+  // CardPayment customization
+  const cardCustomization = {
     visual: {
       style: {
         theme: "dark" as const,
@@ -116,8 +135,8 @@ export default function PaymentBrick({
     <div ref={containerRef} className="w-full">
       {paymentMethod === "card" ? (
         <CardPayment
-          initialization={initialization}
-          customization={customization}
+          initialization={cardInitialization}
+          customization={cardCustomization}
           onSubmit={handleSubmit}
           onReady={() => {
             console.log("CardPayment ready");
@@ -133,9 +152,7 @@ export default function PaymentBrick({
         />
       ) : (
         <Wallet
-          initialization={initialization}
-          customization={customization}
-          onSubmit={handleSubmit}
+          onSubmit={handleWalletSubmit}
           onReady={() => {
             console.log("Wallet ready");
           }}
