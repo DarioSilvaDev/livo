@@ -11,6 +11,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "moduleDetection": "force",
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
